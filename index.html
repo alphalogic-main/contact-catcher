@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jabari Alleyne - Let's Connect</title>
+  <title>Jabari Alleyne - NFC Digital Business Card</title>
   <style>
-    /* Base Styles (Mobile First) */
     :root {
       --primary-color: #0077cc;
       --primary-hover: #005fa3;
@@ -140,7 +139,18 @@
       transform: translateY(-2px);
     }
 
-    /* Tablet and Desktop Styles */
+    .nfc-status {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background: #f0f8ff;
+      border-radius: var(--border-radius);
+      display: none;
+    }
+
+    .nfc-status i {
+      margin-right: 0.5rem;
+    }
+
     @media (min-width: 768px) {
       :root {
         --spacing-unit: 1.25rem;
@@ -165,10 +175,11 @@
 
       .action-buttons {
         flex-direction: row;
+        flex-wrap: wrap;
       }
 
       .btn {
-        padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1.5);
+        flex: 1 1 45%;
       }
     }
   </style>
@@ -185,7 +196,7 @@
         
         <div class="bio">
           <p>As a Marine Operations Specialist at SOL Caribbean, I oversee and coordinate all marine-related activities to ensure safe and efficient operations. With extensive experience in maritime logistics and vessel management, I'm committed to maintaining the highest standards of safety and environmental compliance.</p>
-        <br><p>My expertise includes port operations, cargo handling, and regulatory compliance. I'm passionate about optimizing marine operations through innovative solutions and teamwork.</p>
+          <p>My expertise includes port operations, cargo handling, and regulatory compliance. I'm passionate about optimizing marine operations through innovative solutions and teamwork.</p>
         </div>
       </div>
 
@@ -193,9 +204,16 @@
         <button id="saveContactBtn" class="btn">
           <i class="fas fa-address-card"></i> Save Contact
         </button>
+        <button id="nfcShareBtn" class="btn">
+          <i class="fas fa-wifi"></i> Share via NFC
+        </button>
         <a href="intro.pdf" class="btn" download>
           <i class="fas fa-file-pdf"></i> Download PDF
         </a>
+      </div>
+      
+      <div id="nfcStatus" class="nfc-status">
+        <i class="fas fa-sync-alt fa-spin"></i> <span class="nfc-message">Waiting for NFC connection...</span>
       </div>
       
       <div class="social-links">
@@ -216,9 +234,8 @@
   </div>
 
   <script>
-    document.getElementById('saveContactBtn').addEventListener('click', async function() {
-      // Create vCard content
-      const vCardContent = `BEGIN:VCARD
+    // vCard content
+    const vCardContent = `BEGIN:VCARD
 VERSION:3.0
 PRODID:-//Apple Inc.//iPhone OS 18.5//EN
 N:Alleyne;Jabari;;;
@@ -253,41 +270,34 @@ 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
-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
+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
-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
+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
+ACiiigAooooAKKKKACiiigD/9k=
 END:VCARD`;
 
+    // Save contact function
+    async function saveContact() {
       // Try to add contact directly on mobile devices
       if (navigator.contacts && navigator.contacts.save) {
         try {
@@ -317,7 +327,7 @@ END:VCARD`;
           };
           
           await navigator.contacts.save(contact);
-          alert('Contact saved successfully!');
+          showNfcStatus('Contact saved successfully!', 'success');
           return;
         } catch (err) {
           console.log('Failed to save contact directly:', err);
@@ -342,6 +352,129 @@ END:VCARD`;
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
       }, 100);
+      
+      showNfcStatus('Contact downloaded!', 'success');
+    }
+
+    // NFC Sharing Functionality
+    async function startNFCShare() {
+      const nfcStatus = document.getElementById('nfcStatus');
+      const nfcMessage = nfcStatus.querySelector('.nfc-message');
+      
+      // Check for Web NFC API support (Chrome for Android)
+      if ('NDEFReader' in window) {
+        try {
+          showNfcStatus('Preparing NFC...', 'loading');
+          
+          const ndef = new NDEFReader();
+          await ndef.scan();
+          
+          // Show device-specific instructions
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+          const message = isIOS 
+            ? 'Hold top of your phone to another device'
+            : 'Hold phones back-to-back (NFC areas touching)';
+          
+          showNfcStatus(message, 'ready');
+          
+          // Write vCard when another device is detected
+          ndef.onreading = async ({ message }) => {
+            try {
+              showNfcStatus('Device detected! Sharing contact...', 'loading');
+              
+              await ndef.write({
+                records: [{
+                  recordType: "mime",
+                  mediaType: "text/vcard",
+                  data: vCardContent
+                }]
+              });
+              
+              showNfcStatus('Contact shared successfully!', 'success');
+              setTimeout(() => nfcStatus.style.display = 'none', 2000);
+            } catch (err) {
+              console.error("NFC write error:", err);
+              showNfcStatus('Failed to share. Try manual save.', 'error');
+              setTimeout(() => nfcStatus.style.display = 'none', 3000);
+            }
+          };
+          
+          // Timeout after 20 seconds
+          setTimeout(() => {
+            if (nfcStatus.style.display !== 'none') {
+              showNfcStatus('No device found. Try manual save.', 'error');
+              setTimeout(() => nfcStatus.style.display = 'none', 3000);
+            }
+          }, 20000);
+          
+        } catch (err) {
+          console.error("NFC error:", err);
+          showNfcStatus('NFC not available. Using fallback...', 'error');
+          setTimeout(() => nfcStatus.style.display = 'none', 3000);
+          shareFallback();
+        }
+      } else {
+        // Fallback for non-NFC browsers
+        shareFallback();
+      }
+    }
+
+    // Fallback sharing method
+    async function shareFallback() {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Jabari Alleyne - Contact',
+            text: 'Marine Operations Specialist at SOL Caribbean',
+            url: window.location.href
+          });
+        } catch (err) {
+          console.log('Share failed:', err);
+          saveContact(); // Final fallback
+        }
+      } else {
+        saveContact();
+      }
+    }
+
+    // Helper function to show NFC status messages
+    function showNfcStatus(message, type) {
+      const nfcStatus = document.getElementById('nfcStatus');
+      const nfcMessage = nfcStatus.querySelector('.nfc-message');
+      const icon = nfcStatus.querySelector('i');
+      
+      nfcStatus.style.display = 'block';
+      nfcMessage.textContent = message;
+      
+      // Clear all classes
+      nfcStatus.className = 'nfc-status';
+      icon.className = 'fas';
+      
+      // Add type-specific classes
+      switch(type) {
+        case 'loading':
+          icon.classList.add('fa-sync-alt', 'fa-spin');
+          nfcStatus.classList.add('nfc-loading');
+          break;
+        case 'ready':
+          icon.classList.add('fa-mobile-alt');
+          nfcStatus.classList.add('nfc-ready');
+          break;
+        case 'success':
+          icon.classList.add('fa-check-circle');
+          nfcStatus.classList.add('nfc-success');
+          break;
+        case 'error':
+          icon.classList.add('fa-exclamation-circle');
+          nfcStatus.classList.add('nfc-error');
+          break;
+      }
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('saveContactBtn').addEventListener('click', saveContact);
+      document.getElementById('nfcShareBtn').addEventListener('click', startNFCShare);
     });
   </script>
 </body>
