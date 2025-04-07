@@ -60,18 +60,19 @@
       margin: 0 auto var(--spacing-unit);
       display: block;
       border: 3px solid #eee;
-      background-color: #ddd;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #999;
-      font-size: 0.8rem;
     }
 
     h1 {
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
       color: var(--primary-color);
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: var(--spacing-unit);
+      font-weight: normal;
     }
 
     .subtitle {
@@ -148,6 +149,10 @@
         font-size: 2rem;
       }
 
+      h2 {
+        font-size: 1.4rem;
+      }
+
       .action-buttons {
         flex-direction: row;
       }
@@ -156,8 +161,6 @@
         padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1.5);
       }
     }
-
-    /* Font Awesome for icons - loaded from CDN */
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -165,9 +168,7 @@
   <div class="container">
     <main class="card">
       <div class="profile-section">
-        <div class="profile-img">
-          <span>Profile Image</span>
-        </div>
+        <img src="profile.jpg" alt="Jabari Alleyne" class="profile-img">
         <h1>Jabari Alleyne</h1>
         <h2>SOL Marine</h2>
         <p class="subtitle">Download my contact card and introductory PDF below:</p>
