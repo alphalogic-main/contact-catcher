@@ -4,63 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Catcher</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      padding: 2em;
-      background: #f4f4f4;
-      color: #333;
-    }
-    .container {
-      max-width: 480px;
-      margin: auto;
-      background: white;
-      padding: 2em;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 0.5em;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      margin: 1em 0;
-      padding: 1em;
-      font-size: 1.1em;
-      background-color: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-    .btn:hover {
-      background-color: #005fa3;
-    }
-    .qrcode {
-      margin-top: 2em;
-    }
-    img {
-      width: 100%;
-      max-width: 250px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Contact Catcher</h1>
-    <p>Download my contact card and introductory PDF below:</p>
-    <a href="contact.vcf" class="btn" download>Save My Contact</a>
-    <a href="intro.pdf" class="btn" download>Download Intro PDF</a>
+    <main class="card">
+      <div class="profile-section">
+        <img src="profile-placeholder.jpg" alt="Profile Image" class="profile-img">
+        <h1>Contact Catcher</h1>
+        <p class="subtitle">Download my contact card and introductory PDF below:</p>
+      </div>
 
-    <!-- Optional QR Code Image -->
-    <div class="qrcode">
-      <p>Scan to open this page:</p>
-      <img src="qrcode.png" alt="QR Code" />
-    </div>
+      <div class="action-buttons">
+        <a href="contact.vcf" class="btn" download>Save My Contact</a>
+        <a href="intro.pdf" class="btn" download>Download Intro PDF</a>
+      </div>
+
+      <div class="qrcode-section">
+        <p>Scan to open this page:</p>
+        <img src="qrcode.png" alt="QR Code" class="qrcode-img">
+      </div>
+    </main>
   </div>
 </body>
 </html>
