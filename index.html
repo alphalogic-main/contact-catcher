@@ -43,22 +43,46 @@
       background: var(--card-bg);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      padding: calc(var(--spacing-unit) * 1.5);
       text-align: center;
+      overflow: hidden; /* Ensures header image corners are rounded */
     }
 
-    .profile-section {
-      margin-bottom: calc(var(--spacing-unit) * 1.5);
+    /* New header image container */
+    .header-container {
+      position: relative;
+      height: 180px; /* Adjust height as needed */
+      background-color: #f0f0f0; /* Fallback color */
+      overflow: hidden;
+    }
+
+    .header-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Updated profile image styling */
+    .profile-img-container {
+      position: relative;
+      margin-top: -80px; /* Pulls the profile image up into the header */
+      margin-bottom: var(--spacing-unit);
     }
 
     .profile-img {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto var(--spacing-unit);
       display: block;
-      border: 3px solid #eee;
+      margin: 0 auto;
+      border: 4px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-section {
+      padding: 0 calc(var(--spacing-unit) * 1.5);
+      margin-bottom: calc(var(--spacing-unit) * 1.5);
     }
 
     h1 {
@@ -89,6 +113,7 @@
 
     .action-buttons {
       margin: calc(var(--spacing-unit) * 1.5) 0;
+      padding: 0 calc(var(--spacing-unit) * 1.5);
       display: flex;
       flex-direction: column;
       gap: var(--spacing-unit);
@@ -123,9 +148,11 @@
 
     .social-links {
       margin-top: var(--spacing-unit);
+      padding: 0 calc(var(--spacing-unit) * 1.5);
       display: flex;
       justify-content: center;
       gap: var(--spacing-unit);
+      padding-bottom: calc(var(--spacing-unit) * 1.5);
     }
 
     .social-link {
@@ -140,7 +167,7 @@
     }
 
     .nfc-status {
-      margin-top: 1rem;
+      margin: 0 calc(var(--spacing-unit) * 1.5) 1rem;
       padding: 0.5rem;
       background: #f0f8ff;
       border-radius: var(--border-radius);
@@ -157,12 +184,16 @@
       }
       
       .card {
-        padding: calc(var(--spacing-unit) * 2);
+        padding-bottom: calc(var(--spacing-unit) * 1.5);
+      }
+      
+      .header-container {
+        height: 200px;
       }
       
       .profile-img {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
       }
       
       h1 {
@@ -188,15 +219,24 @@
 <body>
   <div class="container">
     <main class="card">
-      <div class="profile-section">
+      <!-- New header image section -->
+      <div class="header-container">
+        <img src="header-background.jpg" alt="Professional background" class="header-img">
+      </div>
+      
+      <!-- Updated profile section with container -->
+      <div class="profile-img-container">
         <img src="profile.jpg" alt="Jabari Alleyne" class="profile-img">
+      </div>
+      
+      <div class="profile-section">
         <h1>Jabari Alleyne</h1>
         <h2>Marine Operations Specialist</h2>
         <p class="subtitle">SOL Caribbean</p>
         
         <div class="bio">
           <p>As a Marine Operations Specialist at SOL Caribbean, I oversee and coordinate all marine-related activities to ensure safe and efficient operations. With extensive experience in maritime logistics and vessel management, I'm committed to maintaining the highest standards of safety and environmental compliance.</p>
-          <p>My expertise includes port operations, cargo handling, and regulatory compliance. I'm passionate about optimizing marine operations through innovative solutions and teamwork.</p>
+          <br><p>My expertise includes port operations, cargo handling, and regulatory compliance. I'm passionate about optimizing marine operations through innovative solutions and teamwork.</p>
         </div>
       </div>
 
