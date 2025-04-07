@@ -1,0 +1,123 @@
+/* Base Styles (Mobile First) */
+:root {
+  --primary-color: #0077cc;
+  --primary-hover: #005fa3;
+  --text-color: #333;
+  --bg-color: #f4f4f4;
+  --card-bg: white;
+  --border-radius: 10px;
+  --box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  --spacing-unit: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: var(--spacing-unit);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: calc(var(--spacing-unit) * 1.5);
+  text-align: center;
+}
+
+.profile-section {
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--spacing-unit);
+  display: block;
+  border: 3px solid #eee;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: var(--spacing-unit);
+}
+
+.action-buttons {
+  margin: calc(var(--spacing-unit) * 1.5) 0;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: calc(var(--spacing-unit) * 0.8);
+  margin: var(--spacing-unit) 0;
+  font-size: 1.1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.qrcode-section {
+  margin-top: calc(var(--spacing-unit) * 1.5);
+  padding-top: calc(var(--spacing-unit) * 1.5);
+  border-top: 1px solid #eee;
+}
+
+.qrcode-img {
+  width: 100%;
+  max-width: 200px;
+  margin: var(--spacing-unit) auto 0;
+  display: block;
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+  :root {
+    --spacing-unit: 1.25rem;
+  }
+  
+  .card {
+    padding: calc(var(--spacing-unit) * 2);
+  }
+  
+  .profile-img {
+    width: 140px;
+    height: 140px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
