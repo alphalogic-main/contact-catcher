@@ -79,6 +79,14 @@
       color: #666;
       margin-bottom: var(--spacing-unit);
     }
+    
+    .bio {
+      text-align: left;
+      margin: var(--spacing-unit) 0;
+      padding: var(--spacing-unit);
+      background: #f9f9f9;
+      border-radius: var(--border-radius);
+    }
 
     .action-buttons {
       margin: calc(var(--spacing-unit) * 1.5) 0;
@@ -114,20 +122,22 @@
       font-size: 1.2rem;
     }
 
-    .qrcode-section {
-      margin-top: calc(var(--spacing-unit) * 1.5);
-      padding-top: calc(var(--spacing-unit) * 1.5);
-      border-top: 1px solid #eee;
+    .social-links {
+      margin-top: var(--spacing-unit);
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-unit);
     }
 
-    .qrcode-img {
-      width: 100%;
-      max-width: 200px;
-      margin: var(--spacing-unit) auto 0;
-      display: block;
-      background-color: #f8f8f8;
-      padding: 1rem;
-      border-radius: 8px;
+    .social-link {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--primary-hover);
+      transform: translateY(-2px);
     }
 
     /* Tablet and Desktop Styles */
@@ -172,6 +182,11 @@
         <h1>Jabari Alleyne</h1>
         <h2>Marine Operations Specialist</h2>
         <p class="subtitle">SOL Caribbean</p>
+        
+        <div class="bio">
+          <p>As a Marine Operations Specialist at SOL Caribbean, I oversee and coordinate all marine-related activities to ensure safe and efficient operations. With extensive experience in maritime logistics and vessel management, I'm committed to maintaining the highest standards of safety and environmental compliance.</p>
+          <p>My expertise includes port operations, cargo handling, and regulatory compliance. I'm passionate about optimizing marine operations through innovative solutions and teamwork.</p>
+        </div>
       </div>
 
       <div class="action-buttons">
@@ -182,18 +197,26 @@
           <i class="fas fa-file-pdf"></i> Download PDF
         </a>
       </div>
-
-      <div class="qrcode-section">
-        <p>Scan to open this page:</p>
-        <div class="qrcode-img">
-           <img src="qrcode.png.jpg" alt="Jabari Alleyne-home">
-        </div>
+      
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/jabari-alleyne-9a96aa1ab" class="social-link" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=+12468524766" class="social-link" target="_blank" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+1-246-852-4766" class="social-link" aria-label="Phone">
+          <i class="fas fa-phone"></i>
+        </a>
+        <a href="mailto:jabari.alleyne@solpetroleum.com" class="social-link" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
     </main>
   </div>
 
   <script>
-    document.getElementById('saveContactBtn').addEventListener('click', function() {
+    document.getElementById('saveContactBtn').addEventListener('click', async function() {
       // Create vCard content
       const vCardContent = `BEGIN:VCARD
 VERSION:3.0
@@ -232,118 +255,93 @@ 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
-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
+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
 END:VCARD`;
 
-      // Create a Blob with the vCard content
-      const blob = new Blob([vCardContent], { type: 'text/vcard' });
+      // Try to add contact directly on mobile devices
+      if (navigator.contacts && navigator.contacts.save) {
+        try {
+          const contact = {
+            name: {
+              givenName: 'Jabari',
+              familyName: 'Alleyne'
+            },
+            organizations: [{
+              name: 'SOL Caribbean',
+              title: 'Marine Operations Specialist'
+            }],
+            emails: [{
+              address: 'jabari.alleyne@solpetroleum.com',
+              type: 'work'
+            }],
+            phones: [{
+              number: '+12468524766',
+              type: 'work'
+            }, {
+              number: '+1-246-852-4766',
+              type: 'mobile'
+            }],
+            urls: [{
+              url: 'https://www.linkedin.com/in/jabari-alleyne-9a96aa1ab'
+            }]
+          };
+          
+          await navigator.contacts.save(contact);
+          alert('Contact saved successfully!');
+          return;
+        } catch (err) {
+          console.log('Failed to save contact directly:', err);
+          // Fall through to download method
+        }
+      }
       
-      // Create a URL for the Blob
+      // Fallback method: download vCard file
+      const blob = new Blob([vCardContent], { type: 'text/vcard' });
       const url = URL.createObjectURL(blob);
       
-      // Create a temporary anchor element
       const a = document.createElement('a');
       a.href = url;
       a.download = 'Jabari_Alleyne.vcf';
       a.style.display = 'none';
       
-      // Append the anchor to the body and trigger the download
       document.body.appendChild(a);
       a.click();
       
       // Clean up
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      
-      // For mobile devices, try to add contact directly
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: 'Add Jabari Alleyne to contacts',
-            text: 'Marine Operations Specialist at SOL Caribbean',
-            url: url
-          });
-        } catch (err) {
-          console.log('Share failed:', err);
-        }
-      }
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 100);
     });
   </script>
 </body>
